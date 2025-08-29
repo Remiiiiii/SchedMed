@@ -1,5 +1,5 @@
 {
-  "adapter": "ssr",
+  "adapter": "static",
   "buildCommand": "npm run build",
   "startCommand": "npm start"
 }
