@@ -1,6 +1,18 @@
 import Image from "next/image";
 
-export default function Home() {
+// Force dynamic rendering for SSR
+export const dynamic = "force-dynamic";
+
+// Server component that runs on the server
+async function getServerData() {
+  // Simulate server-side data fetching
+  const timestamp = new Date().toISOString();
+  return { timestamp, message: "This data was fetched on the server!" };
+}
+
+export default async function Home() {
+  const serverData = await getServerData();
+
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -12,6 +24,13 @@ export default function Home() {
           height={38}
           priority
         />
+
+        {/* Server-side rendered data */}
+        <div className="bg-green-100 dark:bg-green-900 p-4 rounded-lg">
+          <h2 className="font-bold mb-2">Server-Side Data:</h2>
+          <p className="text-sm">Message: {serverData.message}</p>
+          <p className="text-sm">Timestamp: {serverData.timestamp}</p>
+        </div>
 
         <div className="flex flex-col gap-12 items-center sm:items-start">
           <h1 className="text-5xl font-bold leading-tight text-center sm:text-left">
