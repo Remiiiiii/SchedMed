@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Control } from "react-hook-form";
 import { FormFieldType } from "./forms/PatientForm";
 import Image from "next/image";
-import PhoneInput from "react-phone-number-input/input";
+import PhoneInput from "react-phone-number-input";
 import { E164Number } from "libphonenumber-js";
 
 interface CustomProps {
@@ -63,11 +63,12 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           </FormControl>
         </div>
       );
-    case FormFieldType.TEXTAREA:
+
+    case FormFieldType.PHONE_INPUT:
       return (
         <FormControl>
           <PhoneInput
-            defaultCountry="US"
+            country="US"
             placeholder={placeholder}
             international
             withCountryCallingCode
@@ -77,8 +78,6 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           />
         </FormControl>
       );
-    case FormFieldType.PHONE_INPUT:
-      return <FormControl></FormControl>;
     case FormFieldType.DATE_PICKER:
       return (
         <div className="flex border rounded-md border-dark-500 bg-dark-400">

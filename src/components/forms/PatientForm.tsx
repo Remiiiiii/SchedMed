@@ -46,11 +46,11 @@ export const PatientForm = () => {
         phone: values.phone,
       };
 
-      // const newUser = await createUser(user);
+      const newUser = await createUser(user);
 
-      // if (newUser) {
-      //   router.push(`/patients/${newUser.$id}/register`);
-      // }
+      if (newUser) {
+        router.push(`/patients/${newUser.$id}/register`);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -95,9 +95,7 @@ export const PatientForm = () => {
           label="Phone Number"
           placeholder="(555)-555-5555"
         />
-        <SubmitButton isLoading={isLoading} className="w-full">
-          Get Started
-        </SubmitButton>
+        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
     </Form>
   );
