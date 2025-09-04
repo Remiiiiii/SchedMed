@@ -1,23 +1,22 @@
 import { PatientForm } from "@/components/forms/PatientForm";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
   return (
     <div className="flex h-screen max-h-screen">
-      <section className="remove-scrollbar container my-auto">
-        <div className="flex  max-w-[500px]">
+      <section className="container my-auto remove-scrollbar">
+        <div className="sub-container max-w-[496px]">
           <Image
             src="/assets/icons/logo-sm.svg"
             alt="patient"
             width={1000}
             height={1000}
-            className="mb-12 h-10 w-fit"
+            className="h-10 mb-12 w-fit"
           />
           <h2 className="text-white text-36-bold">SchedMed</h2>
           <PatientForm />
-          <div className="text-14-regular mt-20 flex justify-between">
+          <div className="flex justify-between mt-20 text-14-regular">
             <p className="justify-items-end text-dark-600 xl:text-left">
               © 2025 SchedMed
             </p>
