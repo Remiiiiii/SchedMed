@@ -31,7 +31,7 @@ export enum FormFieldType {
   SELECT = "select",
   SKELETON = "skeleton",
 }
-const RegisterForm = ({ user }: { user: User }) => {
+const RegisterForm = ({ user }: { user: User | null }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,11 +39,15 @@ const RegisterForm = ({ user }: { user: User }) => {
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
       ...PatientFormDefaultValues,
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
+      name: user?.name || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
     },
   });
+
+  if (!user) {
+    return <div>User not found. Please check your user ID.</div>;
+  }
 
   const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
     setIsLoading(true);
@@ -106,14 +110,14 @@ const RegisterForm = ({ user }: { user: User }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-12 flex-1"
+        className="flex-1 space-y-12"
       >
         <section className="space-y-4">
           <h1 className="header">Welcome {user.name}</h1>
           <p className="text-dark-700">Tell us a little bit about yourself.</p>
         </section>
         <section className="space-y-6">
-          <div className="mb-9 space-y-1">
+          <div className="space-y-1 mb-9">
             <h2 className="sub-header">Your Details</h2>
           </div>
         </section>
@@ -149,7 +153,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           <CustomFormCreation
             fieldType={FormFieldType.DATE_PICKER}
             control={form.control}
-            name="birthdate"
+            name="birthDate"
             label="DOB"
           />
           <CustomFormCreation
@@ -160,7 +164,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             renderSkeleton={(field) => (
               <FormControl>
                 <RadioGroup
-                  className="flex h-11 gap-6 xl:justify-between"
+                  className="flex gap-6 h-11 xl:justify-between"
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
@@ -210,7 +214,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           />
         </div>
         <section className="space-y-6">
-          <div className="mb-9 space-y-1">
+          <div className="space-y-1 mb-9">
             <h2 className="sub-header">Medical Details</h2>
           </div>
         </section>
@@ -230,7 +234,7 @@ const RegisterForm = ({ user }: { user: User }) => {
                   width={30.5}
                   height={30.5}
                   alt={doctor.name}
-                  className="rounded-full border border-dark-500"
+                  className="border rounded-full border-dark-500"
                 />
                 <p>
                   {doctor.name} - {doctor.specialty}
@@ -288,7 +292,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           />
         </div>
         <section className="space-y-6">
-          <div className="mb-9 space-y-1">
+          <div className="space-y-1 mb-9">
             <h2 className="sub-header">Identification & Verification</h2>
           </div>
         </section>
@@ -324,7 +328,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           )}
         />
         <section className="space-y-6">
-          <div className="mb-9 space-y-1">
+          <div className="space-y-1 mb-9">
             <h2 className="sub-header">Consent & Privacy</h2>
           </div>
         </section>
