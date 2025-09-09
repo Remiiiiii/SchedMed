@@ -18,8 +18,8 @@ import {
 } from "@/constants";
 import { Label } from "@radix-ui/react-label";
 import { Doctors } from "@/constants";
-import { SelectItem } from "../ui/select";
 import Image from "next/image";
+import { SelectItem } from "@radix-ui/react-select";
 import FileUploader from "../FileUploader";
 
 export enum FormFieldType {
@@ -106,14 +106,14 @@ const RegisterForm = ({ user }: { user: User }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-12 flex-1"
+        className="flex-1 space-y-12"
       >
         <section className="space-y-4">
           <h1 className="header">Welcome {user.name}</h1>
           <p className="text-dark-700">Tell us a little bit about yourself.</p>
         </section>
         <section className="space-y-6">
-          <div className="mb-9 space-y-1">
+          <div className="space-y-1 mb-9">
             <h2 className="sub-header">Your Details</h2>
           </div>
         </section>
@@ -160,7 +160,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             renderSkeleton={(field) => (
               <FormControl>
                 <RadioGroup
-                  className="flex h-11 gap-6 xl:justify-between"
+                  className="flex gap-6 h-11 xl:justify-between"
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
@@ -210,7 +210,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           />
         </div>
         <section className="space-y-6">
-          <div className="mb-9 space-y-1">
+          <div className="space-y-1 mb-9">
             <h2 className="sub-header">Medical Details</h2>
           </div>
         </section>
@@ -230,7 +230,7 @@ const RegisterForm = ({ user }: { user: User }) => {
                   width={30.5}
                   height={30.5}
                   alt={doctor.name}
-                  className="rounded-full border border-dark-500"
+                  className="border rounded-full border-dark-500"
                 />
                 <p>
                   {doctor.name} - {doctor.specialty}
@@ -288,7 +288,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           />
         </div>
         <section className="space-y-6">
-          <div className="mb-9 space-y-1">
+          <div className="space-y-1 mb-9">
             <h2 className="sub-header">Identification & Verification</h2>
           </div>
         </section>
@@ -324,7 +324,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           )}
         />
         <section className="space-y-6">
-          <div className="mb-9 space-y-1">
+          <div className="space-y-1 mb-9">
             <h2 className="sub-header">Consent & Privacy</h2>
           </div>
         </section>
@@ -347,7 +347,9 @@ const RegisterForm = ({ user }: { user: User }) => {
           label="I acknowledge and agree to the terms of the privacy policy."
         />
 
-        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
+        <SubmitButton isLoading={isLoading} className="w-full">
+          Get Started
+        </SubmitButton>
       </form>
     </Form>
   );

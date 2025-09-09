@@ -12,12 +12,13 @@ import { useRouter } from "next/navigation";
 import { FormFieldType } from "./PatientForm";
 import { Doctors } from "@/constants";
 import Image from "next/image";
-import { SelectItem } from "../ui/select";
+
+import { Appointment } from "../../../types/appwrite.types";
 import {
   createAppointment,
   updateAppointment,
 } from "@/lib/actions/appointment.actions";
-import { Appointment } from "@/types/appwrite.types";
+import { SelectItem } from "../ui/select";
 
 const AppointmentForm = ({
   userId,
@@ -68,7 +69,6 @@ const AppointmentForm = ({
 
     try {
       if (type === "create" && patientId) {
-        console.log("Im Here");
         const appointmentData = {
           userId,
           patient: patientId,
@@ -137,7 +137,7 @@ const AppointmentForm = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 space-y-6">
         <section className="mb-12 space-y-4">
           <h1 className="header">New Appointment</h1>
           <p className="text-dark-700">
@@ -156,13 +156,13 @@ const AppointmentForm = ({
             >
               {Doctors.map((doctor, i) => (
                 <SelectItem key={doctor.name + i} value={doctor.name}>
-                  <div className="flex cursor-pointer items-center gap-2">
+                  <div className="flex items-center gap-2 cursor-pointer">
                     <Image
                       src={doctor.image}
                       width={32}
                       height={32}
                       alt="doctor"
-                      className="rounded-full border border-dark-500"
+                      className="border rounded-full border-dark-500"
                     />
                     <p>
                       {doctor.name} - {doctor.specialty}
