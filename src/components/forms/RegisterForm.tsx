@@ -18,8 +18,8 @@ import {
 } from "@/constants";
 import { Label } from "@radix-ui/react-label";
 import { Doctors } from "@/constants";
+import { SelectItem } from "../ui/select";
 import Image from "next/image";
-import { SelectItem } from "@radix-ui/react-select";
 import FileUploader from "../FileUploader";
 
 export enum FormFieldType {
@@ -347,9 +347,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           label="I acknowledge and agree to the terms of the privacy policy."
         />
 
-        <SubmitButton isLoading={isLoading} className="w-full">
-          Get Started
-        </SubmitButton>
+        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
     </Form>
   );

@@ -131,7 +131,7 @@
   }
 
   .request-details {
-    @apply flex flex-col items-center w-full gap-8 py-8 border-y-2 border-dark-400 md:w-fit md:flex-row;
+    @apply flex flex-col items-center w-full gap-8 py-8 md:w-fit md:flex-row;
   }
 
   /* ===== ADMIN */
@@ -150,6 +150,11 @@
   /* ==== FORM */
   .radio-group {
     @apply flex items-center flex-1 h-full gap-2 p-3 border border-dashed rounded-md border-dark-500 bg-dark-400;
+  }
+
+  /* Radio button styling */
+  [data-state="checked"] svg {
+    fill: #24ae7c !important;
   }
 
   .checkbox-label {

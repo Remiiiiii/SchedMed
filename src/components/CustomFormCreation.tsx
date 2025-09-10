@@ -12,17 +12,12 @@ import { Input } from "@/components/ui/input";
 import { Control } from "react-hook-form";
 import { FormFieldType } from "./forms/PatientForm";
 import Image from "next/image";
-import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import "react-datepicker/dist/react-datepicker.css";
-import { DatePicker } from "react-datepicker";
+import PhoneInput from "react-phone-number-input";
 import { E164Number } from "libphonenumber-js";
-import {
-  Select,
-  SelectContent,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { Textarea } from "./ui/textarea";
 import { Checkbox } from "./ui/checkbox";
 
@@ -49,7 +44,6 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
     placeholder,
     showTimeSelect,
     dateFormat,
-
     renderSkeleton,
   } = props;
 
@@ -91,7 +85,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
       return (
         <FormControl>
           <PhoneInput
-            country="US"
+            defaultCountry="US"
             placeholder={placeholder}
             international
             withCountryCallingCode
@@ -149,6 +143,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
               checked={field.value}
               onCheckedChange={field.onChange}
             />
+
             <label htmlFor="props.name" className="checkbox-label">
               {props.label}
             </label>

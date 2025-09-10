@@ -38,7 +38,9 @@ export const createUser = async (user: CreateUserParams) => {
         Query.equal("email", [user.email]),
       ]);
 
-      return existingUser.users[0];
+      if (existingUser.users && existingUser.users.length > 0) {
+        return parseStringify(existingUser.users[0]);
+      }
     }
     console.error("Error creating user:", error);
     throw error;
