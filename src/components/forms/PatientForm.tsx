@@ -9,7 +9,6 @@ import { z } from "zod";
 import { Form } from "@/components/ui/form";
 import { createUser } from "@/lib/actions/patient.actions";
 import { UserFormValidation } from "@/lib/validation";
-
 import "react-phone-number-input/style.css";
 import CustomFormCreation from "../CustomFormCreation";
 import SubmitButton from "../SubmitButton";
@@ -50,7 +49,6 @@ export const PatientForm = () => {
       console.log("New User", newUser);
       if (newUser) {
         router.push(`/patients/${newUser.$id}/register`);
-        console.log("New User", newUser);
       }
     } catch (error) {
       console.log(error);
@@ -96,7 +94,7 @@ export const PatientForm = () => {
           label="Phone Number"
           placeholder="(555)-555-5555"
         />
-        <SubmitButton isLoading={isLoading} className="w-full">
+        <SubmitButton isLoading={isLoading} className="w-full shad-primary-btn">
           Get Started
         </SubmitButton>
       </form>

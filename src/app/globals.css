@@ -82,7 +82,7 @@
 @layer utilities {
   /* ===== UTILITIES */
   .sidebar {
-    @apply remove-scrollbar w-full max-w-72 flex-col overflow-auto bg-black-800 px-7 py-10;
+    @apply flex-col w-full py-10 overflow-auto remove-scrollbar max-w-72 bg-black-800 px-7;
   }
 
   .left-sidebar {
@@ -94,11 +94,11 @@
   }
 
   .clip-text {
-    @apply bg-clip-text text-transparent;
+    @apply text-transparent bg-clip-text;
   }
 
   .bg-image {
-    @apply bg-black-900 bg-light-rays bg-cover bg-no-repeat;
+    @apply bg-no-repeat bg-cover bg-black-900 bg-light-rays;
   }
 
   .header {
@@ -114,24 +114,24 @@
   }
 
   .sub-container {
-    @apply mx-auto flex size-full flex-col py-10;
+    @apply flex flex-col py-10 mx-auto size-full;
   }
 
   .side-img {
-    @apply hidden h-full object-cover md:block;
+    @apply hidden object-cover h-full md:block;
   }
 
   .copyright {
-    @apply text-14-regular justify-items-end text-center text-dark-600 xl:text-left;
+    @apply text-center text-14-regular justify-items-end text-dark-600 xl:text-left;
   }
 
   /* ==== SUCCESS */
   .success-img {
-    @apply m-auto flex flex-1 flex-col items-center justify-between gap-10 py-10;
+    @apply flex flex-col items-center justify-between flex-1 gap-10 py-10 m-auto;
   }
 
   .request-details {
-    @apply flex w-full flex-col items-center gap-8 border-y-2 border-dark-400 py-8 md:w-fit md:flex-row;
+    @apply flex flex-col items-center w-full gap-8 py-8 border-y-2 border-dark-400 md:w-fit md:flex-row;
   }
 
   /* ===== ADMIN */
@@ -144,21 +144,21 @@
   }
 
   .admin-stat {
-    @apply flex w-full flex-col justify-between gap-5 sm:flex-row xl:gap-10;
+    @apply flex flex-col justify-between w-full gap-5 sm:flex-row xl:gap-10;
   }
 
   /* ==== FORM */
   .radio-group {
-    @apply flex h-full flex-1 items-center gap-2 rounded-md border border-dashed border-dark-500 bg-dark-400 p-3;
+    @apply flex items-center flex-1 h-full gap-2 p-3 border border-dashed rounded-md border-dark-500 bg-dark-400;
   }
 
   .checkbox-label {
-    @apply cursor-pointer text-sm font-medium text-dark-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 md:leading-none;
+    @apply text-sm font-medium cursor-pointer text-dark-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 md:leading-none;
   }
 
   /* ==== File Upload */
   .file-upload {
-    @apply text-12-regular flex cursor-pointer  flex-col items-center justify-center gap-3 rounded-md border border-dashed border-dark-500 bg-dark-400 p-5;
+    @apply flex flex-col items-center justify-center gap-3 p-5 border border-dashed rounded-md cursor-pointer text-12-regular border-dark-500 bg-dark-400;
   }
 
   .file-upload_label {
@@ -167,21 +167,21 @@
 
   /* ==== Stat Card */
   .stat-card {
-    @apply flex flex-1 flex-col gap-6 rounded-2xl bg-cover p-6 shadow-lg;
+    @apply flex flex-col flex-1 gap-6 p-6 bg-cover shadow-lg rounded-2xl;
   }
 
   /* ==== Status Badge */
   .status-badge {
-    @apply flex w-fit items-center gap-2 rounded-full px-4 py-2;
+    @apply flex items-center gap-2 px-4 py-2 rounded-full w-fit;
   }
 
   /* Data Table */
   .data-table {
-    @apply z-10 w-full overflow-hidden rounded-lg border border-dark-400 shadow-lg;
+    @apply z-10 w-full overflow-hidden border rounded-lg shadow-lg border-dark-400;
   }
 
   .table-actions {
-    @apply flex w-full items-center justify-between space-x-2 p-4;
+    @apply flex items-center justify-between w-full p-4 space-x-2;
   }
 
   /* ===== ALIGNMENTS */
@@ -321,7 +321,10 @@
 
   /* =====  REACT PHONE NUMBER INPUT OVERRIDES */
   .input-phone {
-    @apply mt-2 h-11 rounded-md px-3 text-sm border bg-dark-400 placeholder:text-dark-600 border-dark-500 !important;
+    @apply mt-2 h-11 text-sm bg-transparent placeholder:text-dark-600 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    display: flex !important;
+    align-items: center !important;
+    border: none !important;
   }
 
   /* =====  REACT DATE PICKER OVERRIDES */
@@ -390,16 +393,45 @@
 }
 
 /* =====  REACT PHONE NUMBER INPUT OVERRIDES */
+.PhoneInput {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: #1a1d21 !important;
+  border: 1px solid #374151 !important;
+  border-radius: 6px !important;
+  padding: 10px 12px !important;
+  transition: border-color 0.2s ease-in-out !important;
+}
+
+.PhoneInput:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.PhoneInputCountrySelect {
+  background: transparent !important;
+  border: none !important;
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-right: 8px !important;
+}
+
 .PhoneInputInput {
-  outline: none;
-  margin-left: 4px;
-  background: #1a1d21;
-  font-size: 14px;
-  font-weight: 500;
+  outline: none !important;
+  margin-left: 4px !important;
+  background: transparent !important;
+  border: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  flex: 1 !important;
 }
 
 .PhoneInputInput::placeholder {
-  color: #1a1d21;
+  color: #6b7280 !important;
 }
 
 @layer base {
