@@ -4,9 +4,11 @@ import { ID, Query } from "node-appwrite";
 import {
   APPOINTMENT_COLLECTION_ID,
   DATABASE_ID,
+  messaging,
   tablesDB,
+  PATIENT_COLLECTION_ID,
 } from "../appwrite.config";
-import { parseStringify } from "../utils";
+import { formatDateTime, parseStringify } from "../utils";
 
 import { revalidatePath } from "next/cache";
 import { Appointment } from "../../../types/appwrite.types";
@@ -70,10 +72,46 @@ export const getRecentAppointmentList = async () => {
       initialCounts
     );
 
+    // Fetch patient details for each appointment
+    const appointmentsWithPatientDetails = await Promise.all(
+      (appointments.rows as unknown as Appointment[]).map(
+        async (appointment: Appointment) => {
+          try {
+            let patientData;
+            if (typeof appointment.patient === "string") {
+              patientData = await tablesDB.getRow({
+                databaseId: DATABASE_ID!,
+                tableId: PATIENT_COLLECTION_ID!,
+                rowId: appointment.patient,
+              });
+            } else if (appointment.patient && appointment.patient.$id) {
+              patientData = await tablesDB.getRow({
+                databaseId: DATABASE_ID!,
+                tableId: PATIENT_COLLECTION_ID!,
+                rowId: appointment.patient.$id,
+              });
+            } else {
+              // Fallback: patient data might already be populated
+              patientData = appointment.patient;
+            }
+
+            return {
+              ...appointment,
+              patient: patientData,
+            };
+          } catch (patientError) {
+            console.log("Error fetching patient data:", patientError);
+            // Return appointment with original patient data if fetch fails
+            return appointment;
+          }
+        }
+      )
+    );
+
     const data = {
       totalCount: appointments.total,
       ...counts,
-      documents: appointments.rows,
+      documents: appointmentsWithPatientDetails,
     };
     return parseStringify(data);
   } catch (error) {
@@ -84,6 +122,8 @@ export const getRecentAppointmentList = async () => {
 export const updateAppointment = async ({
   appointmentId,
   appointment,
+  userId,
+  type,
 }: UpdateAppointmentParams) => {
   try {
     const updatedAppointment = await tablesDB.updateRow({
@@ -97,9 +137,44 @@ export const updateAppointment = async ({
       throw new Error("Appointment not found");
     }
 
+    const smsMessage = `Hello there! It's Remy with SchedMed.
+
+${
+  type === "schedule"
+    ? `Your appointment has been successfully scheduled for ${
+        formatDateTime(appointment.schedule!).dateTime
+      } with Dr.${appointment.primaryPhysician}.`
+    : `We're sorry to inform you that your appointment on ${
+        formatDateTime(appointment.schedule!).dateTime
+      } has been cancelled for the following reason: ${
+        appointment.cancellationReason
+      }`
+}`;
+
+    await sendSMSNotification(userId, smsMessage);
     revalidatePath("/admin");
     return parseStringify(updatedAppointment);
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const sendSMSNotification = async (userId: string, content: string) => {
+  try {
+    const message = await messaging.createSMS({
+      messageId: ID.unique(),
+      content: content, // Message content
+      targets: [],
+      users: [userId], // Phone number in E.164 format (e.g., +1234567890)
+      // Optional parameters
+      // topics: [], // Topics to send to
+      // users: [], // User IDs to send to
+      // draft: false, // Whether to save as draft
+      // scheduledAt: "2024-01-01T00:00:00.000Z", // Schedule for later
+    });
+    return parseStringify(message);
+  } catch (error) {
+    console.log("SMS notification error:", error);
+    throw error;
   }
 };
