@@ -17,15 +17,15 @@ const NewAppointment = async ({ params }: { params: { userId: string } }) => {
     <div className="flex h-screen max-h-screen">
       <section className="container my-auto remove-scrollbar">
         <div className="sub-container max-w-[860px] flex-1 justify-between">
-          <div className="flex items-center gap-2 mb-12">
+          <div className="flex items-center gap-2 mb-12 ml-[-30px]">
             <Image
               src="/assets/icons/logo-sm.svg"
               height={1000}
               width={1000}
               alt="logo"
-              className="h-[50px] w-[50px]"
+              className="h-28 w-fit"
             />
-            <p className="text-36-bold">SchedMed</p>
+            <p className="-ml-8 text-36-bold">SchedMed</p>
           </div>
 
           <AppointmentForm
@@ -34,12 +34,12 @@ const NewAppointment = async ({ params }: { params: { userId: string } }) => {
             patientId={patient?.$id || ""}
           />
 
-          <p className="py-12 mt-10 copyright">© 2025 SchedMed</p>
+          <p className="pt-4 mt-4 copyright">© 2025 SchedMed</p>
         </div>
       </section>
 
       <Image
-        src="/assets/images/appointment-img.png"
+        src="/assets/icons/appointment-img.svg"
         height={1000}
         width={1000}
         alt="appointment"

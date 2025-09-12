@@ -16,18 +16,18 @@ export default async function Home({ searchParams }: SearchParamProps) {
       {isAdmin && <PasskeyModal />}
       <section className="container my-auto remove-scrollbar">
         <div className="sub-container max-w-[496px]">
-          <div className="flex items-center gap-2 mb-12">
+          <div className="flex items-center gap-2 mb-12 -ml-8">
             <Image
               src="/assets/icons/logo-sm.svg"
               alt="patient"
               width={1000}
               height={1000}
-              className="h-10 w-fit"
+              className="h-28 w-fit"
             />
-            <p className="text-36-bold">SchedMed</p>
+            <p className="-ml-8 text-36-bold">SchedMed</p>
           </div>
           <PatientForm />
-          <div className="flex justify-between mt-20 text-14-regular">
+          <div className="flex justify-between mt-8 text-14-regular">
             <p className="justify-items-end text-dark-600 xl:text-left">
               © 2025 SchedMed
             </p>
@@ -38,7 +38,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
         </div>
       </section>
       <Image
-        src="/assets/images/landing-dr-img.png"
+        src="/assets/icons/landing-dr-img.svg"
         alt="patient"
         width={1000}
         height={1000}

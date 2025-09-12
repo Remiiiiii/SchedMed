@@ -42,15 +42,15 @@ const Register = async ({
               alt="patient"
               className="h-[50px] w-[50px]"
             />
-            <p className="text-36-bold">SchedMed</p>
+            <p className="-ml-8 text-36-bold">SchedMed</p>
           </div>
           <RegisterForm user={user} />
-          <p className="py-12 copyright">© 2025 SchedMed</p>
+          <p className="py-6 copyright">© 2025 SchedMed</p>
         </div>
       </section>
 
       <Image
-        src="/assets/images/register-img.png"
+        src="/assets/icons/register-img.svg"
         height={1000}
         width={1000}
         alt="Register image"

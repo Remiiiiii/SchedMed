@@ -109,7 +109,7 @@ const RegisterForm = ({ user }: { user: User }) => {
         className="flex-1 space-y-12"
       >
         <section className="space-y-4">
-          <h1 className="header">Welcome {user.name}</h1>
+          <h1 className="header text-[#ca2b58]">Welcome {user.name}</h1>
           <p className="text-dark-700">Tell us a little bit about yourself.</p>
         </section>
         <section className="space-y-6">

@@ -13,20 +13,26 @@ const Admin = async () => {
   return (
     <div className="flex flex-col mx-auto max-w-7xl space-y-14">
       <header className="admin-header">
-        <Link href="/" className="cursor-pointer">
-          <Image
-            src="/assets/icons/logo-sm.svg"
-            height={32}
-            width={162}
-            alt="Logo"
-            className="h-10 w-fit"
-          />
-        </Link>
+        <div className="flex items-center justify-center gap-2">
+          <Link
+            href="/"
+            className="flex items-center gap-2 -ml-8 cursor-pointer"
+          >
+            <Image
+              src="/assets/icons/logo-sm.svg"
+              height={32}
+              width={162}
+              alt="Logo"
+              className="h-28 w-fit"
+            />
+            <p className="-ml-8 text-[24px] font-semibold">SchedMed</p>
+          </Link>
+        </div>
         <p className="text-16-semibold">Admin Dashboard</p>
       </header>
       <main className="admin-main">
         <section className="w-full space-y-4">
-          <h1 className="header">Welcome</h1>
+          <h1 className="header text-[#ca2b58]">Welcome</h1>
           <p className="text-dark-700">Manage Appointments</p>
           {appointments && (
             <section className="admin-stat">

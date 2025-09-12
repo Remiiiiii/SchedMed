@@ -118,7 +118,7 @@
   }
 
   .side-img {
-    @apply hidden object-cover h-full md:block;
+    @apply hidden object-cover h-[100%] md:block;
   }
 
   .copyright {
@@ -154,7 +154,7 @@
 
   /* Radio button styling */
   [data-state="checked"] svg {
-    fill: #24ae7c !important;
+    fill: #ca2b58 !important;
   }
 
   .checkbox-label {
@@ -241,7 +241,7 @@
 
   /* =====  SHADCN OVERRIDES */
   .shad-primary-btn {
-    @apply bg-green-500 text-white !important;
+    @apply bg-[#CA2B58] text-white !important;
   }
 
   .shad-danger-btn {
@@ -379,13 +379,13 @@
 }
 
 .react-datepicker__day--selected {
-  background-color: #24ae7c !important;
+  background-color: #ca2b58 !important;
   color: #ffffff !important;
   border-radius: 4px;
 }
 
 .react-datepicker__time-list-item--selected {
-  background-color: #24ae7c !important;
+  background-color: #ca2b58 !important;
 }
 
 .react-datepicker__time-container {

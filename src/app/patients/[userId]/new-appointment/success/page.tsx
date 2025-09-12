@@ -35,10 +35,10 @@ const Success = async ({ params, searchParams }: SearchParamProps) => {
               height={1000}
               width={1000}
               alt="logo"
-              className="h-[50px] w-[50px]"
+              className="h-[80px] w-[80px]"
             />
           </Link>
-          <p className="text-36-bold">SchedMed</p>
+          <p className="-ml-6 text-24-bold">SchedMed</p>
         </div>
         <section className="flex flex-col items-center">
           <Image

@@ -141,7 +141,7 @@ const AppointmentForm = ({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 space-y-6">
         <section className="mb-12 space-y-4">
-          <h1 className="header">New Appointment</h1>
+          <h1 className="header text-[#ca2b58]">New Appointment</h1>
           <p className="text-dark-700">
             Schedule a new appointment in a matter of seconds
           </p>
@@ -210,14 +210,7 @@ const AppointmentForm = ({
           />
         )}
 
-        <SubmitButton
-          isLoading={isLoading}
-          className={`${
-            type === "cancel" ? "shad-danger-btn" : "shad-primary-btn"
-          } w-full`}
-        >
-          {buttonLabel}
-        </SubmitButton>
+        <SubmitButton isLoading={isLoading}>{buttonLabel}</SubmitButton>
       </form>
     </Form>
   );

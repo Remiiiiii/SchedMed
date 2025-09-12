@@ -112,6 +112,11 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
               dateFormat={dateFormat ?? "MM/dd/yyyy"}
               showTimeSelect={showTimeSelect ?? false}
               timeInputLabel="Time:"
+              showYearDropdown
+              yearDropdownItemNumber={new Date().getFullYear() - 1925 + 1}
+              scrollableYearDropdown
+              minDate={new Date(1925, 0, 1)}
+              maxDate={new Date()}
               wrapperClassName="date-picker"
             />
           </FormControl>
